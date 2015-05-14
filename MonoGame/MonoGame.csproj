@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{948B3504-5B70-4649-8FE4-BDE1FB46EC69};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{99740493-F1AE-4D82-B278-0B883126A939}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MonoGame</RootNamespace>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <AssemblyName>MonoGame</AssemblyName>
+    <StartupObject>MonoGame.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <UseRefCounting>false</UseRefCounting>
+    <UseSGen>false</UseSGen>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <UseRefCounting>false</UseRefCounting>
+    <UseSGen>false</UseSGen>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <CreatePackage>false</CreatePackage>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="MonoMac" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\packages\MonoGame.Framework.MacOS.3.3.0.0\lib\net45\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Sdl">
+      <HintPath>..\packages\MonoGame.Framework.MacOS.3.3.0.0\lib\net45\Tao.Sdl.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\packages\MonoGame.Framework.MacOS.3.3.0.0\lib\net45\OpenTK.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Game1.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderer\PixelPlotter.cs" />
+    <Compile Include="Renderer\Camera.cs" />
+    <Compile Include="Renderer\PixelModel.cs" />
+    <Compile Include="Renderer\ModelContent\PixelModel.cs" />
+    <Compile Include="Renderer\ModelContent\PixelModelDataReader.cs" />
+    <Compile Include="GameObject\GameObject.cs" />
+    <Compile Include="GameObject\Component\Transform.cs" />
+    <Compile Include="GameObject\Component\Component.cs" />
+    <Compile Include="Renderer\ModelContent\Face.cs" />
+    <Compile Include="Renderer\ModelContent\FaceCollection.cs" />
+    <Compile Include="Renderer\Rasterizer3D.cs" />
+    <Compile Include="Kernal\Singleton.cs" />
+    <Compile Include="Kernal\Logger.cs" />
+    <Compile Include="Kernal\Profiler\IProfilerOutputer.cs" />
+    <Compile Include="Kernal\Profiler\ProfilerLogger.cs" />
+    <Compile Include="Kernal\Profiler\ProfileSample.cs" />
+    <Compile Include="Renderer\IRenderable.cs" />
+    <Compile Include="Renderer\Renderer.cs" />
+    <Compile Include="Kernal\Coroutines\Coroutines.cs" />
+    <Compile Include="GameObject\Component\PixelModelComponent.cs" />
+    <Compile Include="Renderer\Background.cs" />
+    <Compile Include="Renderer\BackgroundRenderer.cs" />
+    <Compile Include="Renderer\ModelContent\FloorGrid.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Content\MonoGame.mgcb" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Renderer\" />
+    <Folder Include="Renderer\ModelContent\" />
+    <Folder Include="GameObject\" />
+    <Folder Include="GameObject\Component\" />
+    <Folder Include="GameSystem\" />
+    <Folder Include="Content\New Folder\" />
+    <Folder Include="Kernal\" />
+    <Folder Include="Kernal\Profiler\" />
+    <Folder Include="Kernal\Coroutines\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SuperFXContent\SuperFXContent.csproj">
+      <Project>{6B0A6D6D-B66B-4266-8ED3-7BD11F5A287C}</Project>
+      <Name>SuperFXContent</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bin\Windows\arwing_color.xnb">
+      <Link>Content\arwing_color.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\62819.xnb">
+      <Link>Content\62819.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\62820.xnb">
+      <Link>Content\62820.xnb</Link>
+    </Content>
+  </ItemGroup>
+</Project>

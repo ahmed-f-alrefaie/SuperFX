@@ -1,0 +1,21 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:Windows
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+/reference:/Users/Food-Processor/Projects/MonoGame/SuperFXContent/bin/Release/SuperFXContent.dll
+
+#---------------------------------- Content ---------------------------------#
+
+#begin arwing_snes_highpoly_original.obj
+/importer:OBJImporter
+/processor:ObjProcessor
+/build:arwing_snes_highpoly_original.obj
+
