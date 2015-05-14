@@ -39,6 +39,10 @@ namespace Renderer
 		//Add bounding sphere here
 		public abstract void Transform3D();
 		public RenderType RenderType{get { return RenderType.RENDER_3D; }}
+
+		protected Renderable3D(){
+			RendererBase.RegisterMeToRenderer (this);
+		}
 		public bool Enable{get{ return Enabled; } set{ Enabled = value; }}
 	}
 

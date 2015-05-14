@@ -17,7 +17,7 @@ namespace Renderer
 		{
 			mWidth = width;
 			mHeight = height;
-			viewRectangle = new Rectangle (0, 10, mWidth*2, mHeight*2);
+			viewRectangle = new Rectangle (0, 0, mWidth*2, mHeight*2);
 			destRect = new Rectangle (mWidth/2, mHeight/2 - 10, (int)(mWidth * 2), (int)(mHeight * 2));
 			origin = new Vector2 (mWidth, (int)(mHeight));
 		}
@@ -28,7 +28,7 @@ namespace Renderer
 		{
 			t += 0.01f;
 			viewRectangle.X = (int)((float)currentBackground.image.Width * (1.0f-(Camera.MainCamera.Rotation.Y) / MathHelper.TwoPi));
-			spriteBatch.Draw (currentBackground.image,destRect , viewRectangle, Color.White,Camera.MainCamera.Rotation.Z, origin, SpriteEffects.None, 0.0f);
+			spriteBatch.Draw (currentBackground.image,destRect , viewRectangle, Color.White,-Camera.MainCamera.Rotation.Z, origin, SpriteEffects.None, 0.0f);
 			//spriteBatch.Draw (currentBackground.image, Vector2.Zero, new Rectangle (0, 0, mWidth, mHeight), viewRectangle, origin, 0.0f, Vector2.One, Color.White, SpriteEffects.None, 0);
 		}
 

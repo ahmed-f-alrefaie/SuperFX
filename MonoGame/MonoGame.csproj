@@ -50,13 +50,13 @@
     <Reference Include="System.Drawing" />
     <Reference Include="MonoMac" />
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\MonoGame.Framework.MacOS.3.3.0.0\lib\net45\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Framework.MacOS.3.4.0.459\lib\net45\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Tao.Sdl">
-      <HintPath>..\packages\MonoGame.Framework.MacOS.3.3.0.0\lib\net45\Tao.Sdl.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Framework.MacOS.3.4.0.459\lib\net45\Tao.Sdl.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK">
-      <HintPath>..\packages\MonoGame.Framework.MacOS.3.3.0.0\lib\net45\OpenTK.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Framework.MacOS.3.4.0.459\lib\net45\OpenTK.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -68,9 +68,6 @@
     <Compile Include="Renderer\PixelModel.cs" />
     <Compile Include="Renderer\ModelContent\PixelModel.cs" />
     <Compile Include="Renderer\ModelContent\PixelModelDataReader.cs" />
-    <Compile Include="GameObject\GameObject.cs" />
-    <Compile Include="GameObject\Component\Transform.cs" />
-    <Compile Include="GameObject\Component\Component.cs" />
     <Compile Include="Renderer\ModelContent\Face.cs" />
     <Compile Include="Renderer\ModelContent\FaceCollection.cs" />
     <Compile Include="Renderer\Rasterizer3D.cs" />
@@ -82,10 +79,16 @@
     <Compile Include="Renderer\IRenderable.cs" />
     <Compile Include="Renderer\Renderer.cs" />
     <Compile Include="Kernal\Coroutines\Coroutines.cs" />
-    <Compile Include="GameObject\Component\PixelModelComponent.cs" />
     <Compile Include="Renderer\Background.cs" />
     <Compile Include="Renderer\BackgroundRenderer.cs" />
     <Compile Include="Renderer\ModelContent\FloorGrid.cs" />
+    <Compile Include="StarfoxClone\Components\Test\ArwingMovingComponent.cs" />
+    <Compile Include="Core\GameObject.cs" />
+    <Compile Include="Core\Component\Transform.cs" />
+    <Compile Include="Core\Component\Component.cs" />
+    <Compile Include="Core\Component\PixelModelComponent.cs" />
+    <Compile Include="Core\Content\FXContent.cs" />
+    <Compile Include="Core\Content\Graphics\RawTexture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -96,13 +99,18 @@
   <ItemGroup>
     <Folder Include="Renderer\" />
     <Folder Include="Renderer\ModelContent\" />
-    <Folder Include="GameObject\" />
-    <Folder Include="GameObject\Component\" />
     <Folder Include="GameSystem\" />
     <Folder Include="Content\New Folder\" />
     <Folder Include="Kernal\" />
     <Folder Include="Kernal\Profiler\" />
     <Folder Include="Kernal\Coroutines\" />
+    <Folder Include="StarfoxClone\" />
+    <Folder Include="StarfoxClone\Components\" />
+    <Folder Include="StarfoxClone\Components\Test\" />
+    <Folder Include="Core\" />
+    <Folder Include="Core\Component\" />
+    <Folder Include="Core\Content\" />
+    <Folder Include="Core\Content\Graphics\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SuperFXContent\SuperFXContent.csproj">

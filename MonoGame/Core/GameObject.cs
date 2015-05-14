@@ -18,6 +18,7 @@ namespace Core
 
 		private GameObject parent=null;
 		private bool mEnabled = true;
+
 		public bool Enabled{
 			get{
 				if(parent!=null){
@@ -47,24 +48,16 @@ namespace Core
 			}
 		}
 
-
-
-		public Transform Transform {
-			get {
-				return transform;
-			}
+		public List<Component> Components{
+			get{ return components; }
+			set{ components = value; }
 		}
 
 		public GameObject ()
 		{
 			//Register all components 
 			transform.RegisterComponent(this);
-			foreach (Component c in components) {
-				c.RegisterComponent (this);
-			}
-			foreach (GameObject g in children) {
-				g.parent = this;
-			}
+
 			//Register to global gameobjects
 			RegisterGameObject(this);
 		}
@@ -82,6 +75,16 @@ namespace Core
 
 		}
 
+		public void Start(){
+			foreach (Component c in components) {
+				c.RegisterComponent (this);
+			}
+			foreach (GameObject g in children) {
+				g.parent = this;
+			}
+			
+		}
+
 		public void Initialise(){
 			transform.Initialize ();
 			foreach (Component c in components) {
@@ -92,6 +95,8 @@ namespace Core
 
 		public void AddComponent(Component component){
 			this.components.Add (component);
+			component.RegisterComponent (this);
+
 		}
 
 		public void Update(GameTime gameTime){
@@ -102,10 +107,10 @@ namespace Core
 			}
 
 		}
-		public void LoadContent(){
-			transform.LoadContent ();
+		public void LoadContent(ContentManager content){
+			transform.LoadContent (content);
 			foreach (Component c in components) {
-				c.LoadContent ();
+				c.LoadContent (content);
 			}
 
 		}

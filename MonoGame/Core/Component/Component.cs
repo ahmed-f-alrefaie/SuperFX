@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 namespace Core.Components
 {
 	public abstract class Component
@@ -21,7 +22,7 @@ namespace Core.Components
 		public virtual void Initialize (){
 		}
 
-		public virtual void LoadContent(){
+		public virtual void LoadContent(ContentManager content){
 		}
 
 		public virtual void Update (GameTime gameTime){

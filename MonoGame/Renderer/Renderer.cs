@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using Kernal;
 namespace Renderer
 {
 	public abstract class RendererBase
@@ -27,8 +27,11 @@ namespace Renderer
 
 		public static void RegisterMeToRenderer(IRenderable Renderable){
 			foreach (RendererBase r in renderList) {
-				if (r.rendertype == Renderable.RenderType)
+				Logger.Instance.Write (Renderable.RenderType.ToString () + " + " + r.rendertype.ToString ());
+				if (r.rendertype == Renderable.RenderType) {
 					r.RegisterObject (Renderable);
+					break;
+				}
 			}
 		}
 

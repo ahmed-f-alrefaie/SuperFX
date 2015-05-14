@@ -48,7 +48,7 @@ namespace Renderer
 		{
 			if (Renderable.RenderType == RenderType.RENDER_3D) {
 				mRenderables.Add ((Renderable3D)Renderable);
-				AddPolygons (((Renderable3D)Renderable).EdgeTables);
+			//	AddPolygons (((Renderable3D)Renderable).EdgeTables);
 
 
 			}
@@ -70,7 +70,7 @@ namespace Renderer
 				if (r.Enable) {
 					r.Transform3D ();
 					for (int i = 0; i < r.EdgeTables.Length; i++) {
-						if(0>Vector3.Dot (r.EdgeTables [i].Normal, Camera.MainCamera.GetViewNormals))
+						if(0>Vector3.Dot (r.EdgeTables [i].Normal, Camera.MainCamera.GetViewNormals) || r.EdgeTables[i].vertices.vertex.Length == 1)
 							AddPolygon (r.EdgeTables[i]);
 					}
 				}
@@ -85,9 +85,9 @@ namespace Renderer
 					continue;
 				
 				float dot = Vector3.Dot (mEdgeTables [i].Normal, Camera.MainCamera.GetViewNormals);
-				if (dot > 0.0f)
+				if (dot < 0.0f)
 					continue;
-			
+				
 				for(int j = 0; j < mEdgeTables[i]._edges.Length; j++){
 
 					Vector4 v1;
@@ -207,7 +207,7 @@ namespace Renderer
 					ActiveX.Sort ((a, b) => a.X.CompareTo (b.X));
 					Color rendColor = mEdgeTables [i].color;
 					if (mEdgeTables [i].doLighting) {
-						float intensity = Math.Max (0, Vector3.Dot (Vector3.Down, mEdgeTables [i].Normal));
+						float intensity = Math.Max (0, Vector3.Dot (Vector3.Up, mEdgeTables [i].Normal));
 						intensity = MathHelper.Clamp (intensity, 0.0f, 1.0f);
 						Vector3 inte = mEdgeTables [i].color.ToVector3 ();
 						inte *= intensity;

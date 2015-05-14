@@ -108,9 +108,13 @@ namespace Renderer
 			Quaternion rot = Quaternion.CreateFromYawPitchRoll (rotation.Y, rotation.X, rotation.Z);
 
 			Vector3.Transform (ref referencePoint, ref rot, out newReference);
-			up = Vector3.Transform (Vector3.Up, Matrix.CreateRotationZ (Rotation.Z));
+			//up = Vector3.Transform (Vector3.Up, Matrix.CreateRotationZ (Rotation.Z));
 			newReference += position;
-			Matrix.CreateLookAt(ref position, ref newReference, ref up,out viewMatrix);
+
+			Matrix rotationMat = Matrix.CreateFromQuaternion (rot);
+
+
+			viewMatrix = Matrix.CreateLookAt(position,newReference,rotationMat.Up);
 			viewProjectionMatrix = viewMatrix*projectionMatrix;
 		}
 

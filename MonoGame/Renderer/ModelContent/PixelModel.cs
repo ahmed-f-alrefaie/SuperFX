@@ -35,6 +35,9 @@ namespace Renderer.ModelContent
 			for(int i = 0; i < pvertex.Length; i++)
 				vertex[i] = new Vector4(pvertex[i],1.0f);
 		}
+
+		public Vertex(Vector3 vertex):this(new Vector3[]{vertex}){
+		}
 	}
 
 
@@ -83,8 +86,9 @@ namespace Renderer.ModelContent
 
 
 				}
-				mOwner = pOwner;
+
 			}
+			mOwner = pOwner;
 			vertices = pvertex;
 		}
 
@@ -160,11 +164,44 @@ namespace Renderer.ModelContent
 		private Vector3 position;
 		private Quaternion rotation;
 		private Vector3 scale;
+
+
+
 		PixelModelData mData;
 		public Vertex transformedVertex;
 		public EdgeTable[] GET;
 		List<XDepth> ActiveX = new List<XDepth>();
 		public override EdgeTable[] EdgeTables{ get{ return GET; } }
+
+		public Vector3 Position {
+			get {
+				return position;
+			}
+			set {
+				position = value;
+			}
+		}
+
+		public Quaternion Rotation {
+			get {
+				return rotation;
+			}
+			set {
+				rotation = value;
+			}
+		}
+
+		public Vector3 Scale {
+			get {
+				return scale;
+			}
+			set {
+				scale = value;
+			}
+		}
+
+
+
 		public PixelModel (PixelModelData data) : base ()
 		{
 			Enabled = true;
@@ -180,7 +217,7 @@ namespace Renderer.ModelContent
 		
 			}
 
-			RendererBase.RegisterMeToRenderer (this);
+
 
 		}
 
@@ -254,7 +291,7 @@ namespace Renderer.ModelContent
 				screenVector.Y /= screenVector.W;
 				screenVector.Z /= screenVector.W;
 					transformedVertex.vertex [i].X = ((screenVector.X)) * (width / 2) + (width / 2);
-					transformedVertex.vertex [i].Y = ((screenVector.Y)) * (height / 2) + (height / 2);
+					transformedVertex.vertex [i].Y = (-(screenVector.Y)) * (height / 2) + (height / 2);
 					transformedVertex.vertex [i].Z = screenVector.Z;
 					transformedVertex.vertex [i].W = screenVector.W;
 				}
