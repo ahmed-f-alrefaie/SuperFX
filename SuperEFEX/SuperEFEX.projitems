@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{EFA18D07-5B6B-42D3-8962-047D0FD7D0A6}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SuperEFEX</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\Component.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\PixelModelComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\Transform.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Content\FXContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Content\Graphics\RawTexture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\GameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Kernal\Coroutines\Coroutines.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Kernal\Logger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Kernal\Profiler\IProfilerOutputer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Kernal\Profiler\ProfilerLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Kernal\Profiler\ProfileSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Kernal\Singleton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\Background.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\BackgroundRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\Camera.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\IRenderable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\ModelContent\Face.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\ModelContent\FaceCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\ModelContent\FloorGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\ModelContent\PixelModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\ModelContent\PixelModelDataReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\PixelModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\PixelPlotter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\Rasterizer3D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\Renderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\ModelContent\TexturedPlane.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)GameSystem\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+</Project>

@@ -62,55 +62,20 @@
   <ItemGroup>
     <Compile Include="Game1.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderer\PixelPlotter.cs" />
-    <Compile Include="Renderer\Camera.cs" />
-    <Compile Include="Renderer\PixelModel.cs" />
-    <Compile Include="Renderer\ModelContent\PixelModel.cs" />
-    <Compile Include="Renderer\ModelContent\PixelModelDataReader.cs" />
-    <Compile Include="Renderer\ModelContent\Face.cs" />
-    <Compile Include="Renderer\ModelContent\FaceCollection.cs" />
-    <Compile Include="Renderer\Rasterizer3D.cs" />
-    <Compile Include="Kernal\Singleton.cs" />
-    <Compile Include="Kernal\Logger.cs" />
-    <Compile Include="Kernal\Profiler\IProfilerOutputer.cs" />
-    <Compile Include="Kernal\Profiler\ProfilerLogger.cs" />
-    <Compile Include="Kernal\Profiler\ProfileSample.cs" />
-    <Compile Include="Renderer\IRenderable.cs" />
-    <Compile Include="Renderer\Renderer.cs" />
-    <Compile Include="Kernal\Coroutines\Coroutines.cs" />
-    <Compile Include="Renderer\Background.cs" />
-    <Compile Include="Renderer\BackgroundRenderer.cs" />
-    <Compile Include="Renderer\ModelContent\FloorGrid.cs" />
     <Compile Include="StarfoxClone\Components\Test\ArwingMovingComponent.cs" />
-    <Compile Include="Core\GameObject.cs" />
-    <Compile Include="Core\Component\Transform.cs" />
-    <Compile Include="Core\Component\Component.cs" />
-    <Compile Include="Core\Component\PixelModelComponent.cs" />
-    <Compile Include="Core\Content\FXContent.cs" />
-    <Compile Include="Core\Content\Graphics\RawTexture.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
-    <None Include="Content\MonoGame.mgcb" />
     <None Include="packages.config" />
+    <None Include="Content\MonoGame.mgcb" />
   </ItemGroup>
+  <Import Project="..\SuperEFEX\SuperEFEX.projitems" Label="Shared" Condition="Exists('..\SuperEFEX\SuperEFEX.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Renderer\" />
-    <Folder Include="Renderer\ModelContent\" />
-    <Folder Include="GameSystem\" />
-    <Folder Include="Content\New Folder\" />
-    <Folder Include="Kernal\" />
-    <Folder Include="Kernal\Profiler\" />
-    <Folder Include="Kernal\Coroutines\" />
     <Folder Include="StarfoxClone\" />
     <Folder Include="StarfoxClone\Components\" />
     <Folder Include="StarfoxClone\Components\Test\" />
-    <Folder Include="Core\" />
-    <Folder Include="Core\Component\" />
-    <Folder Include="Core\Content\" />
-    <Folder Include="Core\Content\Graphics\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SuperFXContent\SuperFXContent.csproj">
@@ -119,14 +84,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bin\Windows\arwing_color.xnb">
-      <Link>Content\arwing_color.xnb</Link>
-    </Content>
-    <Content Include="Content\bin\Windows\62819.xnb">
+    <Content Include="..\StarVox\Content\bin\Windows\62819.xnb">
       <Link>Content\62819.xnb</Link>
     </Content>
-    <Content Include="Content\bin\Windows\62820.xnb">
+    <Content Include="..\StarVox\Content\bin\Windows\62820.xnb">
       <Link>Content\62820.xnb</Link>
+    </Content>
+    <Content Include="..\StarVox\Content\bin\Windows\andross_cube.xnb">
+      <Link>Content\andross_cube.xnb</Link>
+    </Content>
+    <Content Include="..\StarVox\Content\bin\Windows\arwing_color.xnb">
+      <Link>Content\arwing_color.xnb</Link>
     </Content>
   </ItemGroup>
 </Project>

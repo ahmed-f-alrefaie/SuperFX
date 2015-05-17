@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame", "MonoGame\MonoGa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperFXContent", "SuperFXContent\SuperFXContent.csproj", "{6B0A6D6D-B66B-4266-8ED3-7BD11F5A287C}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SuperEFEX", "SuperEFEX\SuperEFEX.shproj", "{EFA18D07-5B6B-42D3-8962-047D0FD7D0A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

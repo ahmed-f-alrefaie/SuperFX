@@ -36,7 +36,8 @@ namespace SuperFXContent
 		}
 		public override string GetRuntimeReader(TargetPlatform targetPlatform)
 		{
-			return "MonoGame.PixelModelDataReader, MonoGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+			Console.WriteLine ("SuperEFEX.Renderer.ModelContent.PixelModelDataReader, MonoGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+			return "SuperEFEX.Renderer.ModelContent.PixelModelDataReader, MonoGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
 		}
 	}
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using Core.Components;
+using SuperEFEX.Core.Components;
 using Microsoft.Xna.Framework;
 namespace StarfoxClone.Components.Test
 {

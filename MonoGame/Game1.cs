@@ -6,16 +6,17 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
-using Renderer;
+using SuperEFEX.Renderer;
 using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
-using Renderer.ModelContent;
+using SuperEFEX.Renderer.ModelContent;
 using SuperFXContent;
-using Core;
-using Core.Components;
+using SuperEFEX.Core;
+using SuperEFEX.Core.Components;
 using StarfoxClone.Components.Test;
-using Kernal;
+using SuperEFEX.Kernal;
+using SuperEFEX.Core.Content;
 #endregion
 
 namespace MonoGame
@@ -38,23 +39,24 @@ namespace MonoGame
 		Rasterizer3D raster;
 		Background titania;
 		BackgroundRenderer bkgRenderer;
-
+		TexturedPlane andross;
 		GameObject arwingGameObject;
 		PixelModelComponent modelComponent;
 		ArwingMovingComponent arwingMove;
 		FloorGrid floor;
+		FXContent content;
 		public Game1 ()
 		{
 			graphics = new GraphicsDeviceManager (this);
-			Content.RootDirectory = "Content";
+			Content.RootDirectory = "./Content";
 			graphics.PreferredBackBufferWidth = 256*3;
 			graphics.PreferredBackBufferHeight = 244*3;
 			graphics.IsFullScreen = false;	
 			graphics.PreferredBackBufferFormat = SurfaceFormat.Bgra32;//SurfaceFormat.Bgr565;
-			Logger.Instance.Init();
+			Logger.Instance.Init("test.txt","");
 			ProfileSampler.outputer = new ProfilerLogger();
 
-
+			string assemName = GameObject.GetAssembly ();
 
 			arwingGameObject = new GameObject ();
 			//modelComponent = new PixelModelComponent ();
@@ -68,7 +70,7 @@ namespace MonoGame
 			//arwingGameObject.AddComponent (arwingMove);
 			//sw.AutoFlush = true;
 			//xml.Serialize (sw, arwingGameObject);
-
+			content = new FXContent(this);
 
 			sr.Close ();
 
@@ -102,9 +104,9 @@ namespace MonoGame
 			spriteBatch = new SpriteBatch (GraphicsDevice);
 			plotter = new PixelPlotter (GraphicsDevice,256, 224);
 			raster = new Rasterizer3D (spriteBatch,plotter);
-
+			andross = new TexturedPlane (content);
 			plotter.SetClearColor (Color.Black);
-			arwingGameObject.LoadContent (Content);
+			arwingGameObject.LoadContent (content);
 
 			bkgRenderer = new BackgroundRenderer (spriteBatch,256,224);
 			//TODO: use this.Content to load your game content here 
@@ -151,9 +153,9 @@ namespace MonoGame
 
 					Exit ();
 				}
-			if(Keyboard.GetState ().IsKeyDown (Keys.A))
-				raster.SetRenderMode(RasterType.WIREFRAME);
-			else
+			//if(Keyboard.GetState ().IsKeyDown (Keys.A))
+			//	raster.SetRenderMode(RasterType.WIREFRAME);
+			//else
 				raster.SetRenderMode(RasterType.FLAT_SHADED);
 				//plotter.DrawLine(0,0,256,256,Color.Red);
 
