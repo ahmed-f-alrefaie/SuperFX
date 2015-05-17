@@ -56,9 +56,6 @@ namespace MonoGame
 			Logger.Instance.Init("test.txt","");
 			ProfileSampler.outputer = new ProfilerLogger();
 
-			string assemName = GameObject.GetAssembly ();
-
-			arwingGameObject = new GameObject ();
 			//modelComponent = new PixelModelComponent ();
 			//arwingMove = new ArwingMovingComponent ();
 			//modelComponent.Filename = "arwing_color";
