@@ -55,6 +55,10 @@ namespace Kernal
 			while (watch.Elapsed.TotalSeconds < time)
 				yield return 0;
 		}
+		static void StopCoroutine(IEnumerator coroutine){
+			routines.Remove (coroutine);
+
+		}
 	}
 }
 

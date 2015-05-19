@@ -70,11 +70,40 @@ namespace SuperEFEX.Renderer
 			if (x < mWidth && x >= 0 && y < mHeight && y >= 0)
 				mFrameBuffer [x + y * mWidth] = color;//downsample_color(color);
 		}
+
+		private void AddColors(ref Color c1, ref Color c2){
+
+			c1.R = (byte)MathHelper.Min ((int)c1.R + (int)c2.R, 255);
+			c1.G = (byte)MathHelper.Min ((int)c1.G + (int)c2.G, 255);
+			c1.B = (byte)MathHelper.Min ((int)c1.B + (int)c2.B, 255);
+			c1.A = (byte)MathHelper.Min ((int)c1.A + (int)c2.A, 255);
+		}
+
+		private void AlphaBlend(ref Color c2, ref Color c1){
+			Vector4 col1 = c1.ToVector4 ();
+			Vector4 col2 = c2.ToVector4 ();
+			Vector4 outColor = Vector4.Zero;
+			outColor.W = col2.W + col1.W * (1.0f - col2.W);
+			outColor.X = (col2.X*col2.W + col1.X*col1.W*(1.0f-col2.W))/outColor.W;
+			outColor.Y = (col2.Y*col2.W + col1.Y*col1.W*(1.0f-col2.W))/outColor.W;
+			outColor.Z = (col2.Z*col2.W + col1.Z*col1.W*(1.0f-col2.W))/outColor.W;
+			c2 =  new Color (outColor);
+		}
+
 		//Plot into frame buffer
 		public void PlotPixelDepth(int x, int y, Color color,float depth){
-			if (x < mWidth && x >= 0 && y < mHeight && y >= 0 && mDepthBuffer [x + y * mWidth] > depth && -1.0f < depth && color.A == 255) {
-				mDepthBuffer [x + y * mWidth] = depth;
-				PlotPixel (x, y, color);
+			if (x < mWidth && x >= 0 && y < mHeight && y >= 0) {
+				//mDepthBuffer [x + y * mWidth] = depth;
+
+				if (mDepthBuffer [x + y * mWidth] > depth && 0.1f < depth) {
+					PlotPixel (x, y, color);
+					mDepthBuffer [x + y * mWidth] = depth;
+				} else if (mFrameBuffer [x + y * mWidth].A != 255) {
+					AddColors (ref mFrameBuffer [x + y * mWidth], ref color);
+
+
+				}
+					
 
 			}
 		}

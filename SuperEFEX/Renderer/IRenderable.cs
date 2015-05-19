@@ -17,6 +17,7 @@ namespace SuperEFEX.Renderer
 
 		bool Enable{get;}
 		RenderType RenderType{get;}
+		int Priority{ get; }
 		//private 
 	}
 
@@ -34,6 +35,7 @@ namespace SuperEFEX.Renderer
 	{
 		protected bool Enabled;
 		protected Matrix world;
+		public int Priority{ get { return 10; } }
 		public Matrix WorldMatrix{ get { return world; } }
 		public abstract ModelContent.EdgeTable[] EdgeTables{ get;}
 		//Add bounding sphere here

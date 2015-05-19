@@ -84,17 +84,30 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\StarVox\Content\bin\Windows\62819.xnb">
+    <Content Include="Content\bin\Windows\62819.xnb">
       <Link>Content\62819.xnb</Link>
     </Content>
-    <Content Include="..\StarVox\Content\bin\Windows\62820.xnb">
+    <Content Include="Content\bin\Windows\62820.xnb">
       <Link>Content\62820.xnb</Link>
     </Content>
-    <Content Include="..\StarVox\Content\bin\Windows\andross_cube.xnb">
+    <Content Include="Content\bin\Windows\andross_cube.xnb">
       <Link>Content\andross_cube.xnb</Link>
     </Content>
-    <Content Include="..\StarVox\Content\bin\Windows\arwing_color.xnb">
+    <Content Include="Content\bin\Windows\arwing_color.mtl">
+      <Link>Content\arwing_color.mtl</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\arwing_color.xnb">
       <Link>Content\arwing_color.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\m7_map.xnb">
+      <Link>Content\m7_map.xnb</Link>
+    </Content>
+    <Content Include="Content\F-Zero-KnightLeague-MuteCityI.xnb" />
+    <Content Include="Content\bin\Windows\26544.xnb">
+      <Link>Content\26544.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\62857.xnb">
+      <Link>Content\62857.xnb</Link>
     </Content>
   </ItemGroup>
 </Project>

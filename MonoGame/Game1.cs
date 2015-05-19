@@ -17,6 +17,7 @@ using SuperEFEX.Core.Components;
 using StarfoxClone.Components.Test;
 using SuperEFEX.Kernal;
 using SuperEFEX.Core.Content;
+using SuperEFEX.Core.Content.Graphics;
 #endregion
 
 namespace MonoGame
@@ -26,9 +27,18 @@ namespace MonoGame
 	/// </summary>
 	public class Game1 : Game
 	{
+
+		const int M7_FAR_BG = 768;
+		const int M7_LEFT=-120;
+		const int M7_RIGHT=120;
+		const int M7_TOP=80;
+		const int M7_BOTTOM=-80;
+		const int M7_NEAR=24;
+		const int M7_FAR=512;
+
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
-		PixelPlotter plotter;
+		PixelPlotter plotter,mode7plot;
 		//PixelModel arwing;
 		//PixelModel arwing2;
 		Vector3 position = Vector3.Zero;
@@ -37,7 +47,7 @@ namespace MonoGame
 		Camera cam;
 		PixelModelData arwingData;
 		Rasterizer3D raster;
-		Background titania;
+		WackyBackground titania;
 		BackgroundRenderer bkgRenderer;
 		TexturedPlane andross;
 		GameObject arwingGameObject;
@@ -45,10 +55,14 @@ namespace MonoGame
 		ArwingMovingComponent arwingMove;
 		FloorGrid floor;
 		FXContent content;
+		Mode7 testMode7;
+		int horizon = 0;
+		float m7D = (256.0f/2.0f)/((float)Math.Tan(MathHelper.ToRadians(45.0f/2.0f)));
+
 		public Game1 ()
 		{
 			graphics = new GraphicsDeviceManager (this);
-			Content.RootDirectory = "./Content";
+			Content.RootDirectory = "Content";
 			graphics.PreferredBackBufferWidth = 256*3;
 			graphics.PreferredBackBufferHeight = 244*3;
 			graphics.IsFullScreen = false;	
@@ -72,6 +86,9 @@ namespace MonoGame
 			sr.Close ();
 
 		}
+
+
+
 
 		/// <summary>
 		/// Allows the game to perform any initialization it needs to before starting to run.
@@ -100,12 +117,26 @@ namespace MonoGame
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch (GraphicsDevice);
 			plotter = new PixelPlotter (GraphicsDevice,256, 224);
+			mode7plot = new PixelPlotter (GraphicsDevice,256, 224);
+			mode7plot.SetClearColor(Color.Transparent);
+
 			raster = new Rasterizer3D (spriteBatch,plotter);
 			andross = new TexturedPlane (content);
 			plotter.SetClearColor (Color.Black);
 			arwingGameObject.LoadContent (content);
 
-			bkgRenderer = new BackgroundRenderer (spriteBatch,256,224);
+
+			//testMode7.hBlankFunc = HblankTest;
+
+			bkgRenderer = new BackgroundRenderer (spriteBatch,plotter,256,224);
+			titania = new WackyBackground ();
+			titania.TextureFile = "62857";//"62819";
+			titania.LoadContent (content);
+
+			//testMode7 = new Mode7(10);
+			//testMode7.TextureFile = "F-Zero-KnightLeague-MuteCityI";
+			//testMode7.LoadContent (content);
+
 			//TODO: use this.Content to load your game content here 
 			//arwing = new PixelModel(verticies,faces,true);
 			//Console.Write(typeof(PixelModelDataReader).AssemblyQualifiedName);
@@ -123,14 +154,16 @@ namespace MonoGame
 		//	arwing.SetLighting (3, false);
 		//	arwing.SetLighting (37, false);
 		//	arwing.SetLighting (24, false);
-			titania = new Background ();
-			titania.Filename = "62819";
-			titania.LoadContent (Content);
+			//titania = new Background ();
+			//titania.Filename = "62819";
+			//titania.LoadContent (Content);
 			floor = new FloorGrid ();
+			floor.Enable = false;
 			//arwing2.SetPosition (0.0f, 5.0f, 50.0f);
 			//arwing2.SetRotation (0.0f, 5.0f, 700.0f);
 			//arwing2.SetScale (3.0f, 3.0f, 3.0f);
 			cam.Position = new Vector3(0, 10,0);
+			//cam.Rotation = new Vector3(MathHelper.ToRadians(-2.0f), 0,0.0f);
 		}
 		float rotationSpeed = 1.0f;
 		float forwardSpeed = 50.0f;
@@ -142,6 +175,12 @@ namespace MonoGame
 		protected override void Update (GameTime gameTime)
 		{
 			ProfileSampler.StartTimer ("Update");
+
+
+			if(cam.Up.Y != 0.0f){
+				horizon = M7_TOP -(int)((((float)M7_FAR_BG*cam.Forward.Y-cam.Position.Y)*m7D)/((float)M7_FAR_BG*cam.Up.Y)) +1;
+			}
+
 				// For Mobile devices, this logic will close the Game when the Back button is pressed
 				// Exit() is obsolete on iOS
 				#if !__IOS__
@@ -217,11 +256,34 @@ namespace MonoGame
 
 			}
 				
+			if (keyboardState.IsKeyDown (Keys.E)) {
+				cam.Rotation = cam.Rotation + new Vector3 (-0.001f, 0, 0);
+			} else if (keyboardState.IsKeyDown (Keys.D)) {
+				cam.Rotation = cam.Rotation + new Vector3 (0.001f, 0, 0);
+			}
 
+			titania.A = (float)Math.Cos (cam.Rotation.Z);
+			titania.B = -(float)Math.Sin (cam.Rotation.Z);
+			titania.C = (float)Math.Sin (cam.Rotation.Z);
+			titania.D = (float)Math.Cos (cam.Rotation.Z);
+			float centerX = plotter.Width / 2.0f;
+			float centerY = plotter.Height / 2.0f;
 
+			float xImage = ((float)titania.Width * (1.0f-(Camera.MainCamera.Rotation.Y) / MathHelper.TwoPi));
+			float yImage = 0.0f;
+			//titania.XOffset =xImage - ( centerX*(float)Math.Cos (cam.Rotation.Z) - centerY*(float)Math.Sin (cam.Rotation.Z));
+			//titania.YOffset =yImage - (centerX*(float)Math.Sin (cam.Rotation.Z) + centerY*(float)Math.Cos (cam.Rotation.Z));
+			titania.YOffset = 232.0f;
+			/*
+			testMode7.xOffset = cam.Position.X;
+			testMode7.yOffset = cam.Position.Z;
+			testMode7.A = 1.0f*(float)Math.Cos(cam.Rotation.Y);
+			testMode7.B = -1.0f*(float)Math.Sin(cam.Rotation.Y);
+			testMode7.C = 1.0f*(float)Math.Sin(cam.Rotation.Y);
+			testMode7.D = 1.0f*(float)Math.Cos(cam.Rotation.Y);
 
-
-
+*/
+			//testMode7.startY = horizon;//cam.Height/2;
 				base.Update (gameTime);
 			ProfileSampler.StopTimer ("Update");
 
@@ -238,11 +300,15 @@ namespace MonoGame
 		
 
 				//TODO: Add your drawing code here
-			spriteBatch.Begin (SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, null, null, Matrix.CreateScale ((float)graphics.GraphicsDevice.Viewport.Width/256.0f,(float)graphics.GraphicsDevice.Viewport.Height/224.0f,1.0f));
+			spriteBatch.Begin (SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, Matrix.CreateScale ((float)graphics.GraphicsDevice.Viewport.Width/256.0f,(float)graphics.GraphicsDevice.Viewport.Height/224.0f,1.0f));
 		
 				//arwing.Draw (cam, plotter);
 				//raster.Draw (gameTime);
+		//	testMode7.Draw (mode7plot);
+		//	mode7plot.Draw (spriteBatch);
 			    RendererBase.Draw(gameTime);
+
+		
 				spriteBatch.End ();
 				base.Draw (gameTime);
 			ProfileSampler.StopTimer ("Draw");

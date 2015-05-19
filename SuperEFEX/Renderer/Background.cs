@@ -1,9 +1,10 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 namespace SuperEFEX.Renderer
 {
-	public class Background : IRenderable
+	public class Background //: IRenderable
 	{
 
 
@@ -17,7 +18,7 @@ namespace SuperEFEX.Renderer
 
 		public Background ()
 		{
-			RendererBase.RegisterMeToRenderer (this);
+			//RendererBase.RegisterMeToRenderer (this);
 		}
 
 
@@ -26,6 +27,7 @@ namespace SuperEFEX.Renderer
 
 			image = content.Load<Texture2D> (Filename);
 		}
+
 
 	}
 }

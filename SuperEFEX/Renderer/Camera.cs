@@ -17,6 +17,17 @@ namespace SuperEFEX.Renderer
 		Vector3 referencePoint = new Vector3 (0, 0, 10);
 		Vector3 newReference;
 		Vector3 up = Vector3.Up;
+		Matrix rotationMat;
+		public Vector3 Forward {
+			get{ return rotationMat.Forward; }
+		}
+
+		public Vector3  Up {
+			get{ return rotationMat.Up; }
+		}
+		public Vector3  Left {
+			get{ return rotationMat.Left; }
+		}
 		int mWidth;
 		int mHeight;
 
@@ -111,7 +122,7 @@ namespace SuperEFEX.Renderer
 			//up = Vector3.Transform (Vector3.Up, Matrix.CreateRotationZ (Rotation.Z));
 			newReference += position;
 
-			Matrix rotationMat = Matrix.CreateFromQuaternion (rot);
+			rotationMat = Matrix.CreateFromQuaternion (rot);
 
 
 			viewMatrix = Matrix.CreateLookAt(position,newReference,rotationMat.Up);

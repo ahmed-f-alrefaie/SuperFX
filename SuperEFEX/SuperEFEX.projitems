@@ -36,6 +36,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Renderer\Rasterizer3D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderer\Renderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderer\ModelContent\TexturedPlane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\Mode7.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\CameraComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\AffineBackground.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\WackyBackground.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)GameSystem\" />

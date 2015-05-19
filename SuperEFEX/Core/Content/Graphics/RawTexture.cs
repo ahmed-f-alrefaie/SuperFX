@@ -12,9 +12,9 @@ namespace SuperEFEX.Core.Content.Graphics
 		private int mHeight;
 
 		//U sampleing method
-		private SamplerState mUSample = SamplerState.PointClamp;
+		private SamplerState mUSample = SamplerState.PointWrap;
 		//V Sampling method
-		private SamplerState mVSample = SamplerState.PointClamp;
+		private SamplerState mVSample = SamplerState.PointWrap;
 
 		public int Width {
 			get {
@@ -40,6 +40,8 @@ namespace SuperEFEX.Core.Content.Graphics
 		}
 
 		public Color GetColor(int u,int v){
+			//if (u > Width || u < 0 || v > Width || v < 0)
+			//	return Color.Transparent;
 			if (mUSample == SamplerState.PointWrap) {
 				while (u >= mWidth)
 					u -= mWidth;
@@ -60,9 +62,8 @@ namespace SuperEFEX.Core.Content.Graphics
 			} else {
 				throw new ArgumentException();
 			}
-
-
-				return mTextureMap [u + v * mWidth];
+				
+			return mTextureMap [u + v * mWidth];
 
 
 		}
