@@ -109,5 +109,14 @@
     <Content Include="Content\bin\Windows\62857.xnb">
       <Link>Content\62857.xnb</Link>
     </Content>
+    <Content Include="Content\bin\Windows\Fencer-anim.xnb">
+      <Link>Content\Fencer-anim.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\newSpriteSheet.xnb">
+      <Link>Content\newSpriteSheet.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\31612.xnb">
+      <Link>Content\31612.xnb</Link>
+    </Content>
   </ItemGroup>
 </Project>

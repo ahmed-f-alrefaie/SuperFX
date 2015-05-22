@@ -26,13 +26,16 @@ namespace SuperEFEX.Core.Components
 
 		public Vector3 Position{
 			get{ return mPosition; }
-			set{ mPosition = value; }
+			set{ 
+					mPosition = value; 
+			
+			}
 		}
 
 		public Vector3 EulerAngles{
 			get{ return mEulerAngle; }
 			set{ mEulerAngle = value; 
-				mQuaternion = Quaternion.CreateFromYawPitchRoll (mEulerAngle.Y, mEulerAngle.X, mEulerAngle.Z);
+				
 			}
 		}
 
@@ -51,6 +54,15 @@ namespace SuperEFEX.Core.Components
 			}
 			set {
 				mScale = value;
+			}
+		}
+
+		public Vector3 LocalPosition {
+			get {
+				return mLocalPosition;
+			}
+			set {
+				mLocalPosition = value;
 			}
 		}
 
@@ -90,13 +102,24 @@ namespace SuperEFEX.Core.Components
 		}
 
 		private void UpdateMatrices(){
+			
 			if (parent != null) {
-			//	mLocalToWorld = Matrix.CreateScale (mLocalScale) * Matrix.CreateFromQuaternion (mLocalRotation) * Matrix.CreateTranslation (mLocalPosition);
-			//	mLocalToWorld = parent.mLocalToWorld * mLocalToWorld;
-			} else {
-				mLocalToWorld = Matrix.CreateScale (mScale) * Matrix.CreateFromQuaternion (mQuaternion) * Matrix.CreateTranslation (mPosition);
 
+				mPosition = Vector3.Transform( mLocalPosition,parent.mLocalToWorld);
+				mQuaternion = Quaternion.CreateFromYawPitchRoll (mLocalEulerAngles.Y, mLocalEulerAngles.X, mLocalEulerAngles.Z);
+				mQuaternion = parent.Quaternion * mQuaternion;
+
+				mLocalToWorld = Matrix.CreateScale (mLocalScale) * Matrix.CreateFromQuaternion (mQuaternion) * Matrix.CreateTranslation (mLocalPosition);
+				mLocalToWorld = parent.mLocalToWorld * mLocalToWorld;
+
+			
+
+			} else {
+				mQuaternion = Quaternion.CreateFromYawPitchRoll (mEulerAngle.Y, mEulerAngle.X, mEulerAngle.Z);
+				mLocalToWorld = Matrix.CreateScale (mScale) * Matrix.CreateFromQuaternion (mQuaternion) * Matrix.CreateTranslation (mPosition);
 			}
+
+			mWorldToLocal = Matrix.Invert (mLocalToWorld);
 
 		}
 

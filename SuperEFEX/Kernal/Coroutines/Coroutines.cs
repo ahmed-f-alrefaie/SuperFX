@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Diagnostics;
-namespace Kernal
+using Microsoft.Xna.Framework;
+namespace SuperEFEX.Kernal
 {
 	public class Coroutines
 	{
@@ -49,7 +50,7 @@ namespace Kernal
 		{
 			get { return routines.Count > 0; }
 		}
-		static IEnumerator Pause(float time)
+		public static IEnumerator Pause(float time)
 		{
 			var watch = Stopwatch.StartNew();
 			while (watch.Elapsed.TotalSeconds < time)
@@ -59,6 +60,29 @@ namespace Kernal
 			routines.Remove (coroutine);
 
 		}
+
+		public static IEnumerator LerpInterpolate(Action<float> action, float start, float end,float time){
+			Stopwatch sp = Stopwatch.StartNew ();
+			while (sp.Elapsed.TotalSeconds < time) {
+				float percentage = (float)sp.Elapsed.TotalSeconds/time;
+				action(MathHelper.Lerp (start, end, percentage));
+				yield return 0;
+			}
+
+
+		}
+		public static IEnumerator SmoothInterpolate(Action<float> action, float start, float end,float time){
+			Stopwatch sp = Stopwatch.StartNew ();
+			while (sp.Elapsed.TotalSeconds < time) {
+				float percentage = (float)sp.Elapsed.TotalSeconds/time;
+				action( MathHelper.SmoothStep (start, end, percentage));
+				yield return 0;
+			}
+
+
+		}
+
+
 	}
 }
 

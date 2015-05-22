@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using SuperEFEX.Core.Content;
 namespace SuperEFEX.Core.Components
 {
+	[Serializable]
 	public abstract class Component
 	{
 
@@ -33,6 +34,10 @@ namespace SuperEFEX.Core.Components
 		}
 
 		public virtual void Destroy(){
+		}
+
+		public Component Clone(){
+			return (Component)this.MemberwiseClone ();
 		}
 
 	}

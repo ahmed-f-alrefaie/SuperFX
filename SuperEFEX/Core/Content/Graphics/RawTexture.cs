@@ -28,7 +28,9 @@ namespace SuperEFEX.Core.Content.Graphics
 			}
 		}
 
-
+		public Texture2D OriginalTexture {
+			get{ return mTexture; }
+		}
 		public RawTexture (Texture2D texture)
 		{
 			mTexture = texture;

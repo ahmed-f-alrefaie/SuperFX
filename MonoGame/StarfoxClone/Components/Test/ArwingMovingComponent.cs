@@ -1,6 +1,12 @@
 ﻿using System;
 using SuperEFEX.Core.Components;
 using Microsoft.Xna.Framework;
+using SuperEFEX.Kernal;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Collections;
+using System.Diagnostics;
 namespace StarfoxClone.Components.Test
 {
 	[Serializable]
@@ -18,6 +24,16 @@ namespace StarfoxClone.Components.Test
 				flashSpeed = value;
 			}
 		}
+			
+
+		IEnumerator DoPositionChange(){
+
+			yield return Coroutines.Pause (10.0f);
+			//Now we do a lerp
+			Coroutines.Start(Coroutines.SmoothInterpolate((x)=>{position.X = x;},owner.transform.Position.X,-50.0f,3.0f));
+			yield return Coroutines.Pause (5.0f);
+
+		}
 
 
 		private float movingTimer = 0.0f;
@@ -32,7 +48,8 @@ namespace StarfoxClone.Components.Test
 		{
 
 			pixelModel = owner.GetComponent<PixelModelComponent> ();
-
+			position = owner.transform.Position;
+			Coroutines.Start (DoPositionChange());
 			base.Initialize ();
 		}
 
@@ -42,7 +59,7 @@ namespace StarfoxClone.Components.Test
 			pixelModel.SetLighting (37, false);
 			pixelModel.SetLighting (24, false);
 
-			position = owner.transform.Position;
+			
 			rotation = owner.transform.EulerAngles;
 
 			//Flashing
@@ -63,7 +80,7 @@ namespace StarfoxClone.Components.Test
 			rotation.Y -= 1.0f * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
-			owner.transform.Position = position;
+			owner.transform.Position = new Vector3(position.X,owner.transform.Position.Y,position.Z);
 			owner.transform.EulerAngles = rotation;
 
 			base.Update (gameTime);

@@ -23,6 +23,7 @@ namespace MonoGame
 				NSApplication.SharedApplication.Delegate = new AppDelegate ();
 				NSApplication.Main (args);
 			}
+			ProfileSampler.Output ();
 		}
 	}
 

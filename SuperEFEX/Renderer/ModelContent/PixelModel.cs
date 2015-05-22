@@ -321,7 +321,7 @@ namespace SuperEFEX.Renderer.ModelContent
 
 
 			//Update the world matrix
-			world = Matrix.CreateScale (scale) * Matrix.CreateFromQuaternion (rotation) * Matrix.CreateTranslation (position);
+			//world = Matrix.CreateScale (scale) * Matrix.CreateFromQuaternion (rotation) * Matrix.CreateTranslation (position);
 			Matrix worldviewProj = world * Camera.MainCamera.ViewProjectionMatrix;
 			UpdateVertices (worldviewProj, Camera.MainCamera.Width, Camera.MainCamera.Height);
 			UpdateEdgeTables ();

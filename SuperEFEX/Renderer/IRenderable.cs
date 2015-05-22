@@ -8,6 +8,7 @@ namespace SuperEFEX.Renderer
 		RENDER_3D,
 		BACKGROUND,
 		MODE_7,
+		SPRITE,
 		FOREGROUND,
 		HUD
 	}
@@ -36,7 +37,15 @@ namespace SuperEFEX.Renderer
 		protected bool Enabled;
 		protected Matrix world;
 		public int Priority{ get { return 10; } }
-		public Matrix WorldMatrix{ get { return world; } }
+	//	public Matrix WorldMatrix{ get { return world; } }
+		public Matrix WorldMatrix {
+			get {
+				return world;
+			}
+			set {
+				world = value;
+			}
+		}
 		public abstract ModelContent.EdgeTable[] EdgeTables{ get;}
 		//Add bounding sphere here
 		public abstract void Transform3D();

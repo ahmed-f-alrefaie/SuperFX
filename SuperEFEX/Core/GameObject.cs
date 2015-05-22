@@ -4,17 +4,29 @@ using Microsoft.Xna.Framework;
 using SuperEFEX.Core.Components;
 using Microsoft.Xna.Framework.Content;
 using SuperEFEX.Core.Content;
+using SuperEFEX.Kernal.Utilities;
 namespace SuperEFEX.Core
 {
 	[Serializable]
 	public class GameObject
 	{
 		
-		private string Name;
+		private string name="Object";
 		private Transform mtransform = new Transform(); 
 		private List<Component> components = new List<Component>();
 		private List<GameObject> children = new List<GameObject> ();
 
+		private int Priority;
+
+
+		public string Name {
+			get {
+				return name;
+			}
+			set {
+				name = value;
+			}
+		}
 
 
 		private GameObject parent=null;
@@ -39,6 +51,17 @@ namespace SuperEFEX.Core
 		}
 
 		private static List<GameObject> mGameObjects = new List<GameObject> ();
+		private static List<GameObject> mPrefabs = new List<GameObject> ();
+
+		public GameObject FindGameObject(string name){
+			foreach (GameObject g in mGameObjects) {
+				if (g.Name == name) {
+					return g;
+				}
+
+			}
+			return null;
+		}
 
 		public GameObject Parent {
 			get {
@@ -56,11 +79,9 @@ namespace SuperEFEX.Core
 
 		public GameObject ()
 		{
+			mGameObjects.Add (this);
 			//Register all components 
 			transform.RegisterComponent(this);
-
-			//Register to global gameobjects
-			RegisterGameObject(this);
 		}
 
 		public static void RegisterGameObject(GameObject g){
@@ -86,6 +107,32 @@ namespace SuperEFEX.Core
 			
 		}
 
+
+		public static void StartUpGameObjects(){
+		}
+
+		protected static void AssignOrder(){
+			foreach (GameObject g in mGameObjects) {
+				g.GetOrder ();
+			}
+
+			//Sort them for updating
+			mGameObjects.Sort((x,y)=>{return x.Priority.CompareTo(y.Priority);});
+		}
+		
+		//Those with parents should be updated last
+		private void GetOrder(){
+			int order = 0;
+			GameObject g = parent;
+			while (g != null) {
+				g = g.Parent;
+				order++;
+			}
+
+			Priority = order;
+
+		}
+
 		public void Initialise(){
 			transform.Initialize ();
 			foreach (Component c in components) {
@@ -93,6 +140,13 @@ namespace SuperEFEX.Core
 			}
 
 		}
+
+		public static void LoadGameContent(FXContent content){
+			foreach (GameObject go in mGameObjects) {
+			}
+
+		}
+
 
 		public void AddComponent(Component component){
 			this.components.Add (component);
@@ -129,16 +183,56 @@ namespace SuperEFEX.Core
 			}
 		}
 
-		public static string GetAssembly(){
-			return typeof(SuperEFEX.Renderer.ModelContent.PixelModelDataReader).AssemblyQualifiedName;
-		}
-
 		public static void GameFixedUpdate(GameTime gameTime){
 			foreach (GameObject g in mGameObjects) {
 				if (g.Enabled)
 					g.FixedUpdate (gameTime);
 			}
 		}
+
+		protected GameObject Clone(FXContent content){
+
+			GameObject go = new GameObject ();
+			go.Name += "(Clone)";
+			go.transform = (Transform)go.transform.Clone ();
+			go.transform.RegisterComponent(this);
+			foreach (Component c in components) {
+				go.AddComponent (c.Clone ());
+			}
+			go.transform.Scale = go.transform.Scale;
+			go.transform.EulerAngles = go.transform.EulerAngles;
+			go.Start ();
+			go.LoadContent (content);
+			go.Initialise ();
+
+
+			return go;
+
+
+		}
+
+		public static GameObject Clone(FXContent content,GameObject g,Vector3 position){
+
+			GameObject go = g.Clone (content);
+			go.transform.Position = position;
+
+			return go;
+
+
+		}
+
+		public static GameObject Clone(FXContent content,string name){
+
+			foreach (GameObject g in mGameObjects) {
+				if (g.Name == name) {
+					return GameObject.Clone (content,g,g.transform.Position);
+				}
+			}
+			return null;
+
+
+		}
+
 	}
 }
 

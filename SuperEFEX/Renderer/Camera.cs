@@ -16,8 +16,11 @@ namespace SuperEFEX.Renderer
 		private Matrix projectionMatrix;
 		Vector3 referencePoint = new Vector3 (0, 0, 10);
 		Vector3 newReference;
-		Vector3 up = Vector3.Up;
 		Matrix rotationMat;
+		private float FOV = 45.0f;
+		private float nearPlane = 0.1f;
+		private float farPlane = 400.0f;
+
 		public Vector3 Forward {
 			get{ return rotationMat.Forward; }
 		}
@@ -136,9 +139,18 @@ namespace SuperEFEX.Renderer
 			//position = Vector3.Zero;
 			//position.Z = -10.0f;
 			viewMatrix = Matrix.Identity;
-			projectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (45.0f), (float)mWidth/(float)mHeight, 0.1f, 200f);
+			projectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FOV), (float)mWidth/(float)mHeight, nearPlane, farPlane);
 
 
+		}
+
+		public void SetCamera(int pWidth,int pHeight,float pFOV, float pnear, float pFar){
+			mWidth = pWidth;
+			mHeight = pHeight;
+			FOV = pFOV;
+			nearPlane = pnear;
+			farPlane = pFar;
+			ResetCamera ();
 		}
 
 	}

@@ -43,11 +43,11 @@ namespace SuperEFEX.Core.Components
 
 		public override void Update (GameTime gameTime)
 		{
-
-			model.Position = owner.transform.Position;
-			model.Rotation = owner.transform.Quaternion;
-			model.Scale = owner.transform.Scale;
-
+			model.Enable = Enabled;
+			//model.Position = owner.transform.Position;
+			//model.Rotation = owner.transform.Quaternion;
+			//model.Scale = owner.transform.Scale;
+			model.WorldMatrix = owner.transform.LocalToWorldMatrix;
 			base.Update (gameTime);
 		}
 

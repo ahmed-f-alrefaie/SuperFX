@@ -99,3 +99,33 @@
 /processorParam:TextureFormat=Color
 /build:62857.png
 
+#begin Fencer-anim.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Fencer-anim.png
+
+#begin newSpriteSheet.sprites
+/importer:SpriteAnimContentImporter
+/processor:SpriteAnimContentProcessor
+/build:newSpriteSheet.sprites
+
+#begin newSpriteSheet.anim
+/copy:newSpriteSheet.anim
+
+#begin 31612.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:31612.png
+

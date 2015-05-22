@@ -23,6 +23,7 @@ namespace SuperEFEX.Renderer
 		private Vector3 lightDirection;
 		private Vector3 ambientColor;
 		private List<XDepth> ActiveX = new List<XDepth> ();
+		private List<Vector4> ActiveVerticies = new List<Vector4> (32);
 		public RasterType raster = RasterType.FLAT_SHADED;
 
 		const float near = 0.1f;
@@ -120,9 +121,117 @@ namespace SuperEFEX.Renderer
 			}
 		}
 
+		private void DrawEdgeTables_II(){
+			//	ProfileSampler.StartTimer ("DrawEdgeTables");
+			Vector4 v1, v2;
+			//Edge Xval = new XDepth ();
+			//Sort Arrays
+			mEdgeTables.Sort ((x, y) => x.minY.CompareTo (y.minY));
+			for (int i = 0; i < mEdgeTables.Count; i++) {
+				if (mEdgeTables [i].Owner.Enable != true)
+					continue;
+				int minY, maxY;
+				minY = mEdgeTables [i].minY;
+				maxY = mEdgeTables [i].maxY;
+
+				if (maxY < 0 || minY > plotter.Height)
+					continue;
+
+				minY = MathHelper.Clamp (minY, 0, plotter.Height);
+				maxY = MathHelper.Clamp (maxY, 0, plotter.Height);
+
+				if (mEdgeTables [i].vertices.vertex.Length == 1) {
+
+					v1 = mEdgeTables [i].vertices.vertex [0];
+					if (v1.W >= 0.1f)
+						plotter.PlotPixelDepth ((int)v1.X, (int)v1.Y, mEdgeTables [i].color, v1.Z);
+
+				}
+				if (mEdgeTables [i].vertices.vertex.Length == 2) {
+					//Just draw it if its a line
+					v1 = mEdgeTables [i].vertices.vertex [0];
+					v2 = mEdgeTables [i].vertices.vertex [1];
+					plotter.DrawLineDepth ((int)v1.X, (int)v1.Y, (int)v2.X, (int)v2.Y, v1.Z, v2.Z, mEdgeTables [i].color);
+
+				}
+			
+				//Triangle case
+				if (mEdgeTables [i]._edges.Length == 3) {
+
+
+					ActiveVerticies.Add(mEdgeTables [i].vertices.vertex[mEdgeTables [i]._edges[0].VertexIndex1]);
+					ActiveVerticies.Add(mEdgeTables [i].vertices.vertex[mEdgeTables [i]._edges[1].VertexIndex1]);
+					ActiveVerticies.Add(mEdgeTables [i].vertices.vertex[mEdgeTables [i]._edges[2].VertexIndex1]);
+
+					ActiveVerticies.Sort ((x, y) => {
+						return x.Y.CompareTo (y.Y);
+					});
+
+					Vector4 vt1 = ActiveVerticies [0];
+					Vector4 vt2 = ActiveVerticies [1];
+					Vector4 vt3 = ActiveVerticies [2];
+					if (vt2.Y == vt3.Y) {
+						DrawBottomFlatTriangle (vt1, vt2, vt3);
+
+					} else if (vt1.Y == vt2.Y) {
+						DrawTopFlatTriangle (ActiveVerticies [0], ActiveVerticies [1], ActiveVerticies [2]);
+
+					} else {
+						Vector4 vt4 = new Vector4((vt1.X + (vt2.Y-vt1.Y)/(vt3.Y-vt1.Y))*(vt3.X - vt1.X),vt2.Y,0.5f,1.0f);
+						DrawBottomFlatTriangle(vt1,vt2,vt4);
+						DrawTopFlatTriangle(vt2,vt4,vt3);
+					}
+					ActiveVerticies.Clear ();
+
+				}
+				//Polygon case
+				else {
+
+
+				}
+
+
+
+			}
+
+
+				ProfileSampler.StopTimer ("DrawEdgeTables");
+		}
+
+
+		private void DrawBottomFlatTriangle(Vector4 v1,Vector4 v2, Vector4 v3){
+
+
+
+			float invslope1 = (v2.X - v1.X) / (v2.Y - v1.Y);
+			float invslope2 = (v3.X - v1.X) / (v3.Y - v1.Y);
+			float curx1 = v1.X;
+			float curx2 = v1.X;
+			for(int scanline = (int)v1.Y; scanline <= (int)v2.Y; scanline++){
+				plotter.DrawScanLineDepth((int)curx1,(int)curx2,scanline,0.5f,0.5f,Color.Red);
+				curx1 += invslope1;
+				curx2 += invslope2;
+			}
+
+		}
+		private void DrawTopFlatTriangle(Vector4 v1,Vector4 v2, Vector4 v3){
+			float invslope1 = (v3.X - v1.X) / (v3.Y - v1.Y);
+			float invslope2 = (v3.X - v2.X) / (v3.Y - v2.Y);
+			float curx1 = v1.X;
+			float curx2 = v1.X;
+			for(int scanline = (int)v3.Y; scanline > (int)v1.Y; scanline--){
+				curx1 -= invslope1;
+				curx2 -= invslope2;
+				plotter.DrawScanLineDepth((int)curx1,(int)curx2,scanline,0.5f,0.5f,Color.Red);
+
+			}
+
+		}
+
 		private void DrawEdgeTables(){
 			ProfileSampler.StartTimer ("DrawEdgeTables");
 			Vector4 v1, v2;
+			XDepth Xval = new XDepth ();
 			//Sort Arrays
 			mEdgeTables.Sort ((x, y) => x.minY.CompareTo (y.minY));
 			for (int i = 0; i < mEdgeTables.Count; i++) {
@@ -149,12 +258,12 @@ namespace SuperEFEX.Renderer
 				}
 
 
-				//float dot = Vector3.Dot (mEdgeTables[i].Normal, mCamera.GetViewNormals);
-				//if (dot > 0.0f)
-				//	continue;
+				float dot = Vector3.Dot (mEdgeTables[i].Normal, Camera.MainCamera.GetViewNormals);
+				if (dot > 0.0f)
+					continue;
 
 				for (int y = minY; y < maxY; y++) {
-					XDepth Xval = new XDepth ();
+					
 					bool parity = false;
 					//Create active edgetable
 					for (int j = 0; j < mEdgeTables [i]._edges.Length; j++) {
@@ -230,7 +339,7 @@ namespace SuperEFEX.Renderer
 
 
 
-
+				//	ProfileSampler.StartTimer ("Raster Edges");
 					//Now we begin drawing
 					for (int x = 0; x < ActiveX.Count; x++) {
 
@@ -252,6 +361,7 @@ namespace SuperEFEX.Renderer
 
 
 					}
+			//		ProfileSampler.StopTimer ("Raster Edges");
 					parity = false;
 					ActiveX.Clear ();
 

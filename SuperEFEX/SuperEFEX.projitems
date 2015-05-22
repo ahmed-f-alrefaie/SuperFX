@@ -40,9 +40,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Component\CameraComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderer\AffineBackground.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderer\WackyBackground.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\AffineSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\SpriteDataReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Kernal\Utilities\ObjectCopier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameSystem\GameScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\SpriteRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\PixelSpriteRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\BatchSpriteRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)GameSystem\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Kernal\Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />
