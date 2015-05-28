@@ -30,7 +30,6 @@ namespace SuperEFEX.Renderer.ModelContent
 			ProfileSampler.StartTimer ("UpdateVerticies");
 			width = Camera.MainCamera.Width;
 			height = Camera.MainCamera.Height;
-			t1 += 0.01f;
 
 			world = Matrix.CreateScale (scale,scale,scale) * Matrix.CreateFromQuaternion (Quaternion.CreateFromYawPitchRoll(0,0,t1)) * Matrix.CreateTranslation (position);
 			Vector4 screenVector = new Vector4 ();

@@ -9,14 +9,14 @@ namespace SuperEFEX.Renderer
 	{
 
 		Camera cam;
-		const int M7_FAR_BG = 768;
+		const int M7_FAR_BG = 3000;
 		const int M7_LEFT=-120;
 		const int M7_RIGHT=120;
 		const int M7_TOP=80;
 		const int M7_BOTTOM=-80;
 		const int M7_NEAR=24;
-		const int M7_FAR=512;
-		const int m7D = 300;
+		const int M7_FAR=3000;
+		const int m7D = 400;
 
 
 		public void m7_HBLANK(AffineBackground m7,int y){

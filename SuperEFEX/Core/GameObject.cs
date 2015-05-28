@@ -143,10 +143,16 @@ namespace SuperEFEX.Core
 
 		public static void LoadGameContent(FXContent content){
 			foreach (GameObject go in mGameObjects) {
+				go.LoadContent (content);
 			}
 
 		}
+		public static void InitializeGameObject(){
+			foreach (GameObject go in mGameObjects) {
+				go.Initialise ();
+			}
 
+		}
 
 		public void AddComponent(Component component){
 			this.components.Add (component);

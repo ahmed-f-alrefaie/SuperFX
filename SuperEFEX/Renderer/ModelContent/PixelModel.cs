@@ -167,9 +167,6 @@ namespace SuperEFEX.Renderer.ModelContent
 
 	public class PixelModel : Renderable3D,IWorld{
 		
-		private Vector3 position;
-		private Quaternion rotation;
-		private Vector3 scale;
 
 
 
@@ -179,32 +176,6 @@ namespace SuperEFEX.Renderer.ModelContent
 		List<XDepth> ActiveX = new List<XDepth>();
 		public override EdgeTable[] EdgeTables{ get{ return GET; } }
 
-		public Vector3 Position {
-			get {
-				return position;
-			}
-			set {
-				position = value;
-			}
-		}
-
-		public Quaternion Rotation {
-			get {
-				return rotation;
-			}
-			set {
-				rotation = value;
-			}
-		}
-
-		public Vector3 Scale {
-			get {
-				return scale;
-			}
-			set {
-				scale = value;
-			}
-		}
 
 
 
@@ -230,13 +201,9 @@ namespace SuperEFEX.Renderer.ModelContent
 
 
 
-		public void SetPosition(float x, float y, float z){
-			position.X = x;
-			position.Y = y;
-			position.Z = z;
 
 
-		}
+
 
 		private void UpdateEdgeTables(){
 			ProfileSampler.StartTimer ("UpdateAllEdgeTables");
@@ -252,20 +219,8 @@ namespace SuperEFEX.Renderer.ModelContent
 		}
 
 		float wobble = 0.9f;
-		public void SetRotation(float x, float y, float z){
-			rotation = Quaternion.CreateFromYawPitchRoll (x, y, z);
 
 
-		}
-
-		public void SetScale(float x, float y, float z){
-
-			scale.X = x;
-			scale.Y = y;
-			scale.Z = z;
-
-
-		}
 
 		void UpdateNormals(){
 			ProfileSampler.StartTimer ("UpdateNormals");

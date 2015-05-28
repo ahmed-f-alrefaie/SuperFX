@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using SuperEFEX.Core.Content;
 namespace SuperEFEX.Core.Components
 {
-	[Serializable]
+	[Serializable()]
 	public abstract class Component
 	{
 

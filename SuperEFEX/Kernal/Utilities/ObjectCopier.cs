@@ -3,14 +3,16 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.ComponentModel;
-
+using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
 namespace SuperEFEX.Kernal.Utilities{
 /// <summary>
 /// Reference Article http://www.codeproject.com/KB/tips/SerializedObjectCloner.aspx
 /// Provides a method for performing a deep copy of an object.
 /// Binary Serialization is used to perform the copy.
 /// </summary>
-	public static class ObjectCopier
+	public static class Utilities
 	{
 	/// <summary>
 	/// Perform a deep Copy of the object.
@@ -37,6 +39,23 @@ namespace SuperEFEX.Kernal.Utilities{
 				return (T)formatter.Deserialize (stream);
 			}
 		}
+
+		public static List<Type> FindAllDerivedTypes<T>()
+		{
+			return FindAllDerivedTypes<T>(Assembly.GetAssembly(typeof(T)));
+		}
+
+		public static List<Type> FindAllDerivedTypes<T>(Assembly assembly)
+		{
+			var derivedType = typeof(T);
+			return assembly
+				.GetTypes()
+				.Where(t =>
+					t != derivedType &&
+					derivedType.IsAssignableFrom(t)
+				).ToList();
+
+		} 
 
 	}
 

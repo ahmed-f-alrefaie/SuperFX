@@ -7,7 +7,7 @@ using SuperEFEX.Core.Content;
 using SuperFXContent;
 namespace SuperEFEX.Core.Components
 {
-	[Serializable]
+	[Serializable()]
 	public class PixelModelComponent : Component
 	{
 		private PixelModel model;

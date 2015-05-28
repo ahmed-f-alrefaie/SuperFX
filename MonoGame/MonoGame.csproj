@@ -10,6 +10,7 @@
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
     <AssemblyName>MonoGame</AssemblyName>
     <StartupObject>MonoGame.Program</StartupObject>
+    <SuppressXamMacUpsell>True</SuppressXamMacUpsell>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -76,6 +77,9 @@
     <Folder Include="StarfoxClone\" />
     <Folder Include="StarfoxClone\Components\" />
     <Folder Include="StarfoxClone\Components\Test\" />
+    <Folder Include="Content\GameObjects\" />
+    <Folder Include="Content\Scenes\" />
+    <Folder Include="Content\Scenes\GameObjects\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SuperFXContent\SuperFXContent.csproj">
@@ -117,6 +121,12 @@
     </Content>
     <Content Include="Content\bin\Windows\31612.xnb">
       <Link>Content\31612.xnb</Link>
+    </Content>
+    <Content Include="Content\Scenes\GameObjects\TestArwing.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scenes\GameScene.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 </Project>

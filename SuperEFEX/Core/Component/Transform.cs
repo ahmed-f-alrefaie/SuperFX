@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 namespace SuperEFEX.Core.Components
 {
-	[Serializable]
+	[Serializable()]
 	public class Transform : Component
 	{
 		//World transforms

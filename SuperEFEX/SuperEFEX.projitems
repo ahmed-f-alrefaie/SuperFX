@@ -47,6 +47,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Renderer\SpriteRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderer\PixelSpriteRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderer\BatchSpriteRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\SpriteComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)GameSystem\" />
