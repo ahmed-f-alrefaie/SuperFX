@@ -39,9 +39,9 @@ namespace SuperEFEX.Renderer
 		private float dMatrix=1.0f;
 		private float xOffset=0.0f;
 		private float yOffset=0.0f;
-		protected int startY=0;
-		protected int endY=0;
-		protected Action<AffineBackground,int> hBlankFunc = (x,y)=>{};
+		public int startY=0;
+		public int endY=0;
+		public Action<AffineBackground,int> hBlankFunc = (x,y)=>{};
 
 		//Properties
 		public float A {

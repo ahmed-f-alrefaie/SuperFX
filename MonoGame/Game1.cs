@@ -30,8 +30,6 @@ namespace MonoGame
 	{
 
 		GameScene gameScene;
-		XmlSerializer xmlsr;
-		StreamWriter sw;
 		GraphicsDeviceManager graphics;
 		public Game1 ()
 		{
@@ -44,15 +42,8 @@ namespace MonoGame
 			Logger.Instance.Init("test.txt","");
 			ProfileSampler.outputer = new ProfilerLogger();
 
-			//gameScene = new GameScene ();
-		//	gameScene.Name = "TEST";
-		//	gameScene.GameObjects.Add ("Test.XML");
-		//	sw = new StreamWriter ("Content/Scenes/GameScene.xml");
-			//xmlsr = new XmlSerializer (typeof(GameScene));
-			//xmlsr.Serialize (sw,gameScene);
-		//	sw.Close ();
 
-			gameScene = GameScene.CreateGameScene ("Content/Scenes/GameScene.xml");
+			gameScene = GameScene.CreateGameScene ("Content/Scenes/FF6Intro/GameScene.xml");
 
 
 			gameScene.Setup (this,null);
@@ -113,6 +104,10 @@ namespace MonoGame
 		protected override void Draw (GameTime gameTime)
 		{
 			ProfileSampler.StartTimer ("Draw");
+			//FixedUpdates go here
+			gameScene.FixedUpdate(gameTime);
+
+
 			graphics.GraphicsDevice.Clear (Color.Black);
 			gameScene.Draw (gameTime);
 

@@ -51,7 +51,7 @@ namespace SuperEFEX.GameSystem
 		PixelPlotter plotter;
 		BackgroundRenderer bkg;
 		Rasterizer3D rasterizer;
-
+		SpriteRenderer sprite;
 		SpriteBatch spriteBatch;
 
 
@@ -100,6 +100,7 @@ namespace SuperEFEX.GameSystem
 			plotter = new PixelPlotter (graphics, 256, 244);
 			plotter.SetClearColor (Color.TransparentBlack);
 			rasterizer = new Rasterizer3D (spriteBatch, plotter);
+			sprite = new SpriteRenderer (spriteBatch, plotter, 256, 244);
 			bkg = new BackgroundRenderer (spriteBatch, plotter, 256, 244);
 			GameObject.LoadGameContent (Content);
 
@@ -126,6 +127,10 @@ namespace SuperEFEX.GameSystem
 			GameObject.GameUpdate (gameTime);
 			//Do other things here like Renderer/Collision/Physics/Coroutines
 			Coroutines.Update();
+		}
+
+		public void FixedUpdate(GameTime gameTime){
+			GameObject.GameFixedUpdate (gameTime);
 		}
 
 		public void Draw(GameTime gameTime){

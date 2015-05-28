@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GameScene xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>TEST</Name>
+  <GameObjects>
+    <string>GameObjects/Biggs.xml</string>
+    <string>GameObjects/Wedge.xml</string>
+    <string>GameObjects/Terra.xml</string>
+    <string>GameObjects/CutsceneObject.xml</string>
+  </GameObjects>
+</GameScene>

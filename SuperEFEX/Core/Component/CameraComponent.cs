@@ -28,7 +28,7 @@ namespace SuperEFEX.Core.Components
 		public override void Initialize ()
 		{
 			camera.SetCamera (Width, Height, FOV, NearPlane, FarPlane);
-
+			camera.SetMainCamera ();
 			base.Initialize ();
 		}
 
@@ -37,7 +37,7 @@ namespace SuperEFEX.Core.Components
 
 			camera.Position = owner.transform.Position;
 			camera.Rotation = owner.transform.EulerAngles;
-
+			camera.Update ();
 			base.Update (gameTime);
 		}
 

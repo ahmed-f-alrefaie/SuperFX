@@ -129,3 +129,22 @@
 /processorParam:TextureFormat=Color
 /build:31612.png
 
+#begin ff6packedmagitek_image.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:ff6packedmagitek_image.png
+
+#begin ff6packedMagitek.anim
+/copy:ff6packedMagitek.anim
+
+#begin ff6packedMagitek.sprites
+/importer:SpriteAnimContentImporter
+/processor:SpriteAnimContentProcessor
+/build:ff6packedMagitek.sprites
+

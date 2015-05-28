@@ -65,6 +65,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="StarfoxClone\Components\Test\ArwingMovingComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FF6Intro\Components\IntroSceneScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -79,7 +80,11 @@
     <Folder Include="StarfoxClone\Components\Test\" />
     <Folder Include="Content\GameObjects\" />
     <Folder Include="Content\Scenes\" />
-    <Folder Include="Content\Scenes\GameObjects\" />
+    <Folder Include="Content\Scenes\StarwingLike\" />
+    <Folder Include="Content\Scenes\FF6Intro\" />
+    <Folder Include="Content\Scenes\FF6Intro\GameObjects\" />
+    <Folder Include="FF6Intro\" />
+    <Folder Include="FF6Intro\Components\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SuperFXContent\SuperFXContent.csproj">
@@ -122,10 +127,40 @@
     <Content Include="Content\bin\Windows\31612.xnb">
       <Link>Content\31612.xnb</Link>
     </Content>
-    <Content Include="Content\Scenes\GameObjects\TestArwing.xml">
+    <Content Include="Content\Scenes\StarwingLike\GameObjects\TestArwing.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Scenes\GameScene.xml">
+    <Content Include="Content\Scenes\StarwingLike\GameObjects\TestCamera.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scenes\StarwingLike\GameObjects\TestFloor.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scenes\StarwingLike\GameScene.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bin\Windows\ff6packedmagitek_image.xnb">
+      <Link>Content\ff6packedmagitek_image.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\ff6packedMagitek.anim">
+      <Link>Content\ff6packedMagitek.anim</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\ff6packedMagitek.xnb">
+      <Link>Content\ff6packedMagitek.xnb</Link>
+    </Content>
+    <Content Include="Content\Scenes\FF6Intro\GameScene.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scenes\FF6Intro\GameObjects\Biggs.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scenes\FF6Intro\GameObjects\Wedge.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scenes\FF6Intro\GameObjects\Terra.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scenes\FF6Intro\GameObjects\CutsceneObject.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -53,7 +53,7 @@ namespace SuperEFEX.Core
 		private static List<GameObject> mGameObjects = new List<GameObject> ();
 		private static List<GameObject> mPrefabs = new List<GameObject> ();
 
-		public GameObject FindGameObject(string name){
+		public static GameObject FindGameObject(string name){
 			foreach (GameObject g in mGameObjects) {
 				if (g.Name == name) {
 					return g;

@@ -48,6 +48,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Renderer\PixelSpriteRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderer\BatchSpriteRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Component\SpriteComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\FirstPersonComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\FloorGridComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\BackgroundComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\Mode7Component.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)GameSystem\" />

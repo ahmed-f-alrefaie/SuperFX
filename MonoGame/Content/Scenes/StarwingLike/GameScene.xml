@@ -3,5 +3,7 @@
   <Name>TEST</Name>
   <GameObjects>
     <string>GameObjects/TestArwing.xml</string>
+    <string>GameObjects/TestCamera.xml</string>
+    <string>GameObjects/TestFloor.xml</string>
   </GameObjects>
 </GameScene>

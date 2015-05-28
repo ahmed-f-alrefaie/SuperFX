@@ -7,11 +7,12 @@ using SuperFXContent;
 using System.Collections.Generic;
 namespace SuperEFEX.Renderer
 {
-	public class Sprite //: IRenderable
+	public class Sprite : IRenderable
 	{
 
 		public Vector3 position = Vector3.Zero;
 		public Vector3 origin = Vector3.Zero;
+		public Vector2 scale = Vector2.One;
 		public Rectangle texturepoint = new Rectangle();
 		RawTexture mTexture;
 		SpriteData spriteData;
@@ -27,7 +28,17 @@ namespace SuperEFEX.Renderer
 		string mFilename;
 		bool animate = false;
 		public ISpriteRenderer render{ get; set;}
+		public byte Alpha = 255;
+		public bool Enable{ get; set;}
+		public RenderType RenderType{get{ return RenderType.SPRITE; }}
+		public int Priority{ get; set;}
+		public float Falpha{ get { return 255.0f / (float)Alpha; } }
 
+		private float frameMulti = 1.0f;
+		public float FrameMultiplier{
+			get{ return frameMulti; }
+			set{ frameMulti = value; }
+		}
 
 		public RawTexture Texture {
 			get{ return mTexture; }
@@ -43,7 +54,8 @@ namespace SuperEFEX.Renderer
 
 		public Sprite ()
 		{
-
+			render = new BatchSpriteRenderer ();
+			RendererBase.RegisterMeToRenderer (this);
 			//currentAnimation = spriteData.animationData [currentAnimationName];
 		}
 
@@ -95,11 +107,20 @@ namespace SuperEFEX.Renderer
 
 		}
 
+
+		public void SetAlpha(float alpha){
+			alpha = MathHelper.Clamp (alpha, 0.0f, 1.0f);
+			Alpha = (byte)(alpha * 255.0f);
+
+
+
+		}
+
 		public void Update(GameTime gameTime){
 			//Update for animations n shit;
 			if (!animate)
 				return;
-			frameTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+			frameTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds*frameMulti;
 			while (frameTimer > currentFrameDelay) {
 				//if(frameTimer > spriteData.animationData[
 				currentFrameCount++;
@@ -129,7 +150,12 @@ namespace SuperEFEX.Renderer
 		}
 
 		public Color GetColor(int x, int y){
-			return mTexture.GetColor (texturepoint.Left + x, texturepoint.Top + y);
+
+			Color color = mTexture.GetColor (texturepoint.Left + x, texturepoint.Top + y);
+			if (color.A == 255) {
+				color.A = Alpha;
+			}
+			return color;
 		}
 
 		public void Draw(){

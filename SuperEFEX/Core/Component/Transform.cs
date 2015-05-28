@@ -66,6 +66,11 @@ namespace SuperEFEX.Core.Components
 			}
 		}
 
+
+		public void SetY(float y){
+			mPosition.Y = y;
+		}
+
 		private List<Transform> children = new List<Transform>();
 
 		private Transform parent = null;

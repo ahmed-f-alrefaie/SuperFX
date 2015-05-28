@@ -30,7 +30,7 @@ namespace StarfoxClone.Components.Test
 
 			yield return Coroutines.Pause (10.0f);
 			//Now we do a lerp
-			Coroutines.Start(Coroutines.SmoothInterpolate((x)=>{position.X = x;},owner.transform.Position.X,-50.0f,3.0f));
+			Coroutines.Start(Coroutines.SmoothInterpolate((x)=>{position.X = x;},owner.transform.Position.X,-20.0f,3.0f));
 			yield return Coroutines.Pause (5.0f);
 
 		}
