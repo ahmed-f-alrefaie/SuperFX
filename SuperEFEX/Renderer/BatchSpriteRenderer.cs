@@ -7,7 +7,7 @@ namespace SuperEFEX.Renderer
 	{
 
 		public SpriteBatch SpriteBatch;
-
+		public Sprite sprite;
 		public BatchSpriteRenderer ()
 		{
 		}

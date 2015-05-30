@@ -74,11 +74,14 @@ namespace SuperEFEX.Renderer
 			get{ return texture.Height; }
 		}
 
+		public float colorMulti{ get; set; }
+
 		public AffineBackground (int priority)
 		{
 			mPriority = priority;
 			Logger.Instance.Write ("Registering Affine Background\n");
 			RendererBase.RegisterMeToRenderer (this);
+			colorMulti = 1.0f;
 
 		}
 
@@ -97,12 +100,13 @@ namespace SuperEFEX.Renderer
 			startY = Math.Max (0, startY);
 
 			for (int y = startY; y < height; y++) {
+				hBlankFunc (this,y);
 				for (int x = 0; x < width; x++) {
 					float u = aMatrix * (x) + bMatrix * (y) + xOffset;
 					float v = cMatrix * (x ) + dMatrix * (y) + yOffset;
-					plotter.PlotPixel (x, y, GetColor ((int)u, (int)v));
+					plotter.PlotPixel (x, y, GetColor ((int)u, (int)v)*colorMulti);
 				}
-				hBlankFunc (this,y);
+
 
 			}
 

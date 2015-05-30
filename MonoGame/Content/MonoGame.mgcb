@@ -148,3 +148,66 @@
 /processor:SpriteAnimContentProcessor
 /build:ff6packedMagitek.sprites
 
+#begin ff6mode7.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:ff6mode7.png
+
+#begin ff6background.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:ff6background.png
+
+#begin ff6snow.anim
+/copy:ff6snow.anim
+
+#begin ff6snow.sprites
+/importer:SpriteAnimContentImporter
+/processor:SpriteAnimContentProcessor
+/build:ff6snow.sprites
+
+#begin ff6snow_sprite.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:ff6snow_sprite.png
+
+#begin ff6font_image.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:ff6font_image.png
+
+#begin ff6introfont.sprites
+/importer:SpriteAnimContentImporter
+/processor:SpriteFontContentProcessor
+/build:ff6introfont.sprites
+
+#begin FF6-introduction.wma
+/importer:WmaImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:FF6-introduction.wma
+

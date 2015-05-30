@@ -13,7 +13,7 @@ using TImport = System.String;
 
 namespace SuperFXContent
 {
-	[ContentImporter (".sprites", DisplayName = "SpriteAnimImporter", DefaultProcessor = "SpriteContentAnimProcessor")]
+	[ContentImporter (".sprites", DisplayName = "SpriteAnimImporter", DefaultProcessor = "SpriteAnimProcessor")]
 	public class SpriteAnimContentImporter : ContentImporter<XDocument>
 	{
 		public override XDocument Import (string filename, ContentImporterContext context)

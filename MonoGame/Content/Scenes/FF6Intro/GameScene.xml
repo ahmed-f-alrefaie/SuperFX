@@ -6,5 +6,9 @@
     <string>GameObjects/Wedge.xml</string>
     <string>GameObjects/Terra.xml</string>
     <string>GameObjects/CutsceneObject.xml</string>
+    <string>GameObjects/Background.xml</string>
+    <string>GameObjects/Snow1.xml</string>
+    <string>GameObjects/Snow2.xml</string>
+    <string>GameObjects/IntroText.xml</string>
   </GameObjects>
 </GameScene>

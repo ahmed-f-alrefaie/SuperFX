@@ -52,10 +52,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Component\FloorGridComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Component\BackgroundComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Component\Mode7Component.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\Particle\Particle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\ParticleEmitterComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\SpriteFontDataReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderer\SFXSpriteFont.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Component\SpriteFontComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)GameSystem\" />
     <Folder Include="$(MSBuildThisFileDirectory)Kernal\Utilities\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Renderer\Particle\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />

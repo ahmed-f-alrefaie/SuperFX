@@ -14,7 +14,7 @@ namespace SuperEFEX.Renderer
 
 		public override RenderType rendertype{get{ return RenderType.SPRITE; }}
 		List<Sprite> sprites = new List<Sprite>();
-		SpriteBatch spriteBatch;
+		List<SFXSpriteFont> spritefonts = new List<SFXSpriteFont>();
 		public SpriteRenderer (SpriteBatch spriteBatch,PixelPlotter plotter,int width,int height) : base(spriteBatch,100)
 		{
 			//this.plotter = plotter;
@@ -30,7 +30,11 @@ namespace SuperEFEX.Renderer
 					b.Draw ();
 				}
 			}
-
+			foreach (SFXSpriteFont b in spritefonts) {
+				if (b.Enable) {
+					b.Draw ();
+				}
+			}
 			//if (currentBackground == null)
 			//	return;
 			//t += 0.01f;
@@ -41,12 +45,20 @@ namespace SuperEFEX.Renderer
 
 		protected override void RegisterObject (IRenderable Renderable)
 		{
+			if (Renderable is Sprite) {
+				sprites.Add ((Sprite)Renderable);
 
-			sprites.Add ((Sprite)Renderable);
-			((BatchSpriteRenderer)((Sprite)Renderable).render).SpriteBatch = spriteBatch;
-			sprites.Sort ((x, y) => {
-				return x.Priority.CompareTo (y.Priority);
-			});
+				((BatchSpriteRenderer)((Sprite)Renderable).render).SpriteBatch = spriteBatch;
+				sprites.Sort ((x, y) => {
+					return x.Priority.CompareTo (y.Priority);
+				});
+			} else if (Renderable is SFXSpriteFont) {
+
+				((SFXSpriteFont)Renderable).batch = spriteBatch;
+				spritefonts.Add ((SFXSpriteFont)Renderable);
+
+
+			}
 
 			//currentBackground = (Background)Renderable;
 		}

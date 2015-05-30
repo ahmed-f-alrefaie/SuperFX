@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <GameObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>Cutscene</Name>
+  <Name>Text_Actor</Name>
   <transform>
     <Enabled>true</Enabled>
     <Position>
-      <X>256</X>
-      <Y>32</Y>
+      <X>128</X>
+      <Y>30</Y>
       <Z>0</Z>
     </Position>
     <EulerAngles>
-      <X>0.8</X>
+      <X>0</X>
       <Y>0</Y>
       <Z>0</Z>
     </EulerAngles>
@@ -26,21 +26,11 @@
     </Scale>
   </transform>
   <Components>
-    <Component xsi:type="IntroSceneScript">
-    </Component>
-    <Component xsi:type="CameraComponent">
+    <Component xsi:type="SpriteFontComponent">
       <Enabled>true</Enabled>
-      <Width>256</Width>
-      <Height>244</Height>
-      <FOV>45.0</FOV>
-      <NearPlane>0.1</NearPlane>
-      <FarPlane>500.0</FarPlane>
-    </Component>
-    <Component xsi:type="BackgroundComponent">
-    <Filename>ff6mode7</Filename>
-    <Priority>10</Priority>
-    </Component>
-    <Component xsi:type="Mode7Component">
+      <SpriteName>ff6introfont</SpriteName>
+      <DefaultText>HOLY SHIT</DefaultText>
+      <Alpha>0.0</Alpha>
     </Component>
   </Components>
 </GameObject>

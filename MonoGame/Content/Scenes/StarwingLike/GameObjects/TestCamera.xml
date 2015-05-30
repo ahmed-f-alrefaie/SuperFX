@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <GameObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>Cutscene</Name>
+  <Name>CameraGuy</Name>
   <transform>
     <Enabled>true</Enabled>
     <Position>
-      <X>256</X>
-      <Y>32</Y>
+      <X>20</X>
+      <Y>10</Y>
       <Z>0</Z>
     </Position>
     <EulerAngles>
-      <X>0.8</X>
+      <X>0</X>
       <Y>0</Y>
       <Z>0</Z>
     </EulerAngles>
@@ -26,8 +26,6 @@
     </Scale>
   </transform>
   <Components>
-    <Component xsi:type="IntroSceneScript">
-    </Component>
     <Component xsi:type="CameraComponent">
       <Enabled>true</Enabled>
       <Width>256</Width>
@@ -36,11 +34,10 @@
       <NearPlane>0.1</NearPlane>
       <FarPlane>500.0</FarPlane>
     </Component>
-    <Component xsi:type="BackgroundComponent">
-    <Filename>ff6mode7</Filename>
-    <Priority>10</Priority>
-    </Component>
-    <Component xsi:type="Mode7Component">
+    <Component xsi:type="FirstPersonComponent">
+      <Enabled>true</Enabled>
+      <RotationSpeed>1.0</RotationSpeed>
+      <ForwardSpeed>50.0</ForwardSpeed>
     </Component>
   </Components>
 </GameObject>

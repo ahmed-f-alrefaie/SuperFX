@@ -37,8 +37,11 @@
     <Compile Include="ModelData\PixelModelWriter.cs" />
     <Compile Include="SpriteData\SpriteAnimContentImporter.cs" />
     <Compile Include="SpriteData\SpriteAnimContentProcessor.cs" />
-    <Compile Include="SpriteData\SpriteData.cs" />
     <Compile Include="SpriteData\SpriteAnimContentWriter.cs" />
+    <Compile Include="SpriteData\SpriteFontContentProcessor.cs" />
+    <Compile Include="SpriteData\SpriteData.cs" />
+    <Compile Include="SpriteData\SpriteFontData.cs" />
+    <Compile Include="SpriteData\SpriteFontContentWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

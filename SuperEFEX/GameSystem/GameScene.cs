@@ -29,7 +29,7 @@ namespace SuperEFEX.GameSystem
 		//This is to Deserialize GameObjects
 		private Type[] componentTypes;
 		public string Name{ get; set; }
-
+		public FXContent ContentOut{ get {return Content;}}
 
 
 		public static GameScene CreateGameScene(string Filename){

@@ -19,6 +19,7 @@ using SuperEFEX.Kernal;
 using SuperEFEX.Core.Content;
 using SuperEFEX.Core.Content.Graphics;
 using SuperEFEX.GameSystem;
+using Microsoft.Xna.Framework.Media;
 #endregion
 
 namespace MonoGame
@@ -43,8 +44,7 @@ namespace MonoGame
 			ProfileSampler.outputer = new ProfilerLogger();
 
 
-			gameScene = GameScene.CreateGameScene ("Content/Scenes/FF6Intro/GameScene.xml");
-
+			gameScene = GameScene.CreateGameScene ("Content/Scenes/StarwingLike/GameScene.xml");
 
 			gameScene.Setup (this,null);
 
@@ -77,8 +77,11 @@ namespace MonoGame
 		protected override void LoadContent ()
 		{
 			gameScene.LoadContent (GraphicsDevice);
+
 			base.LoadContent ();
 		}
+
+
 
 
 

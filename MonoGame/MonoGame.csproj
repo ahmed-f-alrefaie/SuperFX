@@ -66,6 +66,7 @@
     <Compile Include="StarfoxClone\Components\Test\ArwingMovingComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FF6Intro\Components\IntroSceneScript.cs" />
+    <Compile Include="FF6Intro\Components\ScrollBackground.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -161,6 +162,39 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Scenes\FF6Intro\GameObjects\CutsceneObject.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bin\Windows\ff6mode7.xnb">
+      <Link>Content\ff6mode7.xnb</Link>
+    </Content>
+    <Content Include="Content\Scenes\FF6Intro\GameObjects\Background.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bin\Windows\ff6background.xnb">
+      <Link>Content\ff6background.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\ff6snow_sprite.xnb">
+      <Link>Content\ff6snow_sprite.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\ff6snow.xnb">
+      <Link>Content\ff6snow.xnb</Link>
+    </Content>
+    <Content Include="Content\Scenes\FF6Intro\GameObjects\Snow1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scenes\FF6Intro\GameObjects\Snow2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scenes\FF6Intro\GameObjects\Snow3.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bin\Windows\ff6font_image.xnb">
+      <Link>Content\ff6font_image.xnb</Link>
+    </Content>
+    <Content Include="Content\bin\Windows\ff6introfont.xnb">
+      <Link>Content\ff6introfont.xnb</Link>
+    </Content>
+    <Content Include="Content\Scenes\FF6Intro\GameObjects\IntroText.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

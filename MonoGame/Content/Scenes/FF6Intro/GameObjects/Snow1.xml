@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GameObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Snow2</Name>
+  <transform>
+    <Enabled>true</Enabled>
+    <Position>
+      <X>0</X>
+      <Y>-3</Y>
+      <Z>0</Z>
+    </Position>
+    <EulerAngles>
+      <X>0.0</X>
+      <Y>0</Y>
+      <Z>0</Z>
+    </EulerAngles>
+    <Quaternion>
+      <X>0</X>
+      <Y>0</Y>
+      <Z>0</Z>
+      <W>0</W>
+    </Quaternion>
+    <Scale>
+      <X>1</X>
+      <Y>1</Y>
+      <Z>1</Z>
+    </Scale>
+  </transform>
+  <Components>
+    <Component xsi:type="ParticleEmitterComponent">
+    <NumParticles>100</NumParticles>
+    <EmissionRate>30.0</EmissionRate>
+    <Animation>SNOW_1</Animation>
+    <SpriteName>ff6snow</SpriteName>
+    <ParticleLife>2.0</ParticleLife>
+    <PositionVar>
+      <X>250.0</X>
+      <Y>0</Y>
+      <Z>0</Z>
+    </PositionVar>
+    <Velocity>
+      <X>10.0</X>
+      <Y>200</Y>
+      <Z>0</Z>
+    </Velocity>
+    <VelocityVar>
+      <X>50.0</X>
+      <Y>0</Y>
+      <Z>0</Z>
+    </VelocityVar>
+    <ActiveTime>10.0</ActiveTime>
+    </Component>
+  </Components>
+</GameObject>
+

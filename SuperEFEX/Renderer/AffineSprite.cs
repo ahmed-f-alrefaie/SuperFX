@@ -90,7 +90,7 @@ namespace SuperEFEX.Renderer
 				return;
 			currentAnimationName = animationName;
 			loops = loop;
-			animate = true;
+
 			currentLoop = 0;
 			currentFrameCount = 0;
 			frameTimer = 0.0f;
@@ -101,9 +101,13 @@ namespace SuperEFEX.Renderer
 
 		public void UpdateAnimationData(){
 			totalFrameCount = spriteData.animationData [currentAnimationName].Count;
+			if (totalFrameCount == 1)
+				animate = false;
+			
 			currentFrame = spriteData.animationData [currentAnimationName] [currentFrameCount].SpriteIndex;
 			currentFrameDelay = spriteData.animationData [currentAnimationName] [currentFrameCount].frameDelay*10.0f;
 			frameoffset = spriteData.animationData [currentAnimationName] [currentFrameCount].offset;
+			texturepoint = GetTextureCoords ();
 
 		}
 
@@ -120,30 +124,31 @@ namespace SuperEFEX.Renderer
 			//Update for animations n shit;
 			if (!animate)
 				return;
-			frameTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds*frameMulti;
-			while (frameTimer > currentFrameDelay) {
-				//if(frameTimer > spriteData.animationData[
-				currentFrameCount++;
-				if (currentFrameCount >= totalFrameCount) {
-					if (loops == -1) {
-						//Set the current frame to zero
-						currentFrameCount = 0;
 
-					} else {
-						currentLoop++;
-						if (currentLoop > loops) {
-							animate = false;
-							break;
+				frameTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds * frameMulti;
+				while (frameTimer > currentFrameDelay) {
+					//if(frameTimer > spriteData.animationData[
+					currentFrameCount++;
+					if (currentFrameCount >= totalFrameCount) {
+						if (loops == -1) {
+							//Set the current frame to zero
+							currentFrameCount = 0;
+
+						} else {
+							currentLoop++;
+							if (currentLoop > loops) {
+								animate = false;
+								break;
+							}
+
 						}
 
+
 					}
-
-
+					UpdateAnimationData ();
+					//Get the current frame
+					frameTimer -= currentFrameDelay;
 				}
-				UpdateAnimationData ();
-				//Get the current frame
-				frameTimer -= currentFrameDelay;
-			}
 			texturepoint = GetTextureCoords ();
 
 
